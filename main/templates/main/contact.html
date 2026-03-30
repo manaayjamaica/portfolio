@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+{% block title %}Contact — Jamaica Mana-ay{% endblock %}
+{% block content %}
+
+<section class="page-banner">
+  <div class="page-banner-inner">
+    <p class="page-eyebrow reveal">Reach Out</p>
+    <h1 class="page-heading reveal">Contact</h1>
+  </div>
+</section>
+
+<section class="fw-section">
+  <div class="contact-wrapper">
+    <!-- Info col -->
+    <div class="contact-info reveal">
+      <h2 class="contact-h2">Let's connect.</h2>
+      <p class="contact-desc">Whether you have a project idea, a collaboration in mind, or just want to say hello — I'd love to hear from you.</p>
+      <div class="contact-detail-list">
+        {% if profile and profile.email %}
+        <a href="mailto:{{ profile.email }}" class="cd-item">
+          <div class="cd-icon"><i class="fas fa-envelope"></i></div>
+          <div><span class="cd-label">Email</span><span class="cd-val">{{ profile.email }}</span></div>
+        </a>
+        {% endif %}
+        {% if profile and profile.location %}
+        <div class="cd-item">
+          <div class="cd-icon"><i class="fas fa-location-dot"></i></div>
+          <div><span class="cd-label">Location</span><span class="cd-val">{{ profile.location }}</span></div>
+        </div>
+        {% endif %}
+        {% if profile and profile.github %}
+        <a href="{{ profile.github }}" target="_blank" class="cd-item">
+          <div class="cd-icon"><i class="fab fa-github"></i></div>
+          <div><span class="cd-label">GitHub</span><span class="cd-val">View Profile</span></div>
+        </a>
+        {% endif %}
+        {% if profile and profile.linkedin %}
+        <a href="{{ profile.linkedin }}" target="_blank" class="cd-item">
+          <div class="cd-icon"><i class="fab fa-linkedin"></i></div>
+          <div><span class="cd-label">LinkedIn</span><span class="cd-val">Connect</span></div>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Form col -->
+    <div class="contact-form-col reveal">
+      <form method="POST" class="contact-form">
+        {% csrf_token %}
+        <div class="cf-grid">
+          <div class="cf-field">
+            <label>Name <span>*</span></label>
+            <input type="text" name="name" placeholder="Your full name" required/>
+          </div>
+          <div class="cf-field">
+            <label>Email <span>*</span></label>
+            <input type="email" name="email" placeholder="your@email.com" required/>
+          </div>
+        </div>
+        <div class="cf-field">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="What's this about?"/>
+        </div>
+        <div class="cf-field">
+          <label>Message <span>*</span></label>
+          <textarea name="message" rows="6" placeholder="Write your message here..." required></textarea>
+        </div>
+        <button type="submit" class="btn-amber btn-block">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

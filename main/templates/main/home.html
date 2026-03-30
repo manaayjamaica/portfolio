@@ -1,0 +1,125 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Jamaica Mana-ay — Portfolio{% endblock %}
+{% block content %}
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-label reveal">Computer Science Student</div>
+    <h1 class="hero-title reveal">
+      Jamaica<br><span class="script-accent">Mana-ay</span>
+    </h1>
+    <p class="hero-bio reveal">
+      {% if profile %}{{ profile.tagline }}{% else %}Building thoughtful software with a strong foundation in computer science fundamentals and a passion for clean, elegant solutions.{% endif %}
+    </p>
+    <div class="hero-btns reveal">
+      <a href="{% url 'projects' %}" class="btn-amber">View Projects</a>
+      <a href="{% url 'contact' %}" class="btn-line">Say Hello →</a>
+    </div>
+    <div class="hero-meta reveal">
+      <span><i class="fas fa-location-dot"></i> {% if profile and profile.location %}{{ profile.location }}{% else %}Philippines{% endif %}</span>
+      <span class="dot-sep">·</span>
+      <span><i class="fas fa-circle status-dot"></i> Available for opportunities</span>
+    </div>
+  </div>
+  <div class="hero-visual reveal">
+    {% if profile and profile.profile_photo %}
+      <div class="hero-photo-ring">
+        <img src="{{ profile.profile_photo.url }}" alt="Jamaica Mana-ay"/>
+      </div>
+    {% else %}
+      <div class="hero-photo-placeholder">
+        <i class="fas fa-user"></i>
+      </div>
+    {% endif %}
+    <div class="hero-badge b1"><i class="fas fa-code"></i> CS Major</div>
+    <div class="hero-badge b2"><i class="fab fa-python"></i> Python</div>
+    <div class="hero-badge b3"><i class="fas fa-database"></i> Databases</div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT STRIP ═══ -->
+<section class="strip-section reveal">
+  <div class="strip-inner">
+    <p class="strip-text">
+      {% if profile %}{{ profile.bio|truncatewords:40 }}{% else %}I am a Computer Science student passionate about problem-solving, algorithms, and building real-world applications using modern technologies.{% endif %}
+      <a href="{% url 'about' %}" class="strip-link">More about me →</a>
+    </p>
+    <div class="strip-stats">
+      <div class="sstat"><span>3+</span><small>Projects</small></div>
+      <div class="sstat"><span>CS</span><small>Degree</small></div>
+      <div class="sstat"><span>PH</span><small>Based</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURED PROJECTS ═══ -->
+{% if featured_projects %}
+<section class="fw-section">
+  <div class="fw-header reveal">
+    <div class="fw-title-row">
+      <h2>Featured Projects</h2>
+      <a href="{% url 'projects' %}" class="see-all">All projects <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <p class="fw-sub">A selection of what I've built</p>
+  </div>
+  <div class="feat-grid">
+    {% for p in featured_projects %}
+    <div class="feat-card reveal" style="--delay: {{ forloop.counter0 }}">
+      <div class="feat-top">
+        <span class="feat-idx">{{ forloop.counter|stringformat:"02d" }}</span>
+        <div class="feat-actions">
+          {% if p.github_link %}<a href="{{ p.github_link }}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>{% endif %}
+          {% if p.live_link %}<a href="{{ p.live_link }}" target="_blank" title="Live"><i class="fas fa-arrow-up-right-from-square"></i></a>{% endif %}
+        </div>
+      </div>
+      <h3>{{ p.title }}</h3>
+      <p>{{ p.description|truncatewords:22 }}</p>
+      <div class="feat-tags">
+        {% for t in p.tech_list %}<span>{{ t }}</span>{% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ SKILLS PREVIEW ═══ -->
+<section class="fw-section alt-bg reveal">
+  <div class="fw-header">
+    <div class="fw-title-row">
+      <h2>Core Skills</h2>
+      <a href="{% url 'skills' %}" class="see-all">View all <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <p class="fw-sub">Technologies and concepts I work with</p>
+  </div>
+  <div class="skills-strip">
+    {% if skills_preview %}
+      {% for s in skills_preview %}
+      <div class="skill-pill">
+        <span class="sp-name">{{ s.name }}</span>
+        <span class="sp-bar"><span style="width:{{ s.proficiency }}%"></span></span>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="skill-pill"><span class="sp-name">Python</span><span class="sp-bar"><span style="width:88%"></span></span></div>
+      <div class="skill-pill"><span class="sp-name">Data Structures</span><span class="sp-bar"><span style="width:85%"></span></span></div>
+      <div class="skill-pill"><span class="sp-name">Django</span><span class="sp-bar"><span style="width:80%"></span></span></div>
+      <div class="skill-pill"><span class="sp-name">Java</span><span class="sp-bar"><span style="width:78%"></span></span></div>
+      <div class="skill-pill"><span class="sp-name">OOP</span><span class="sp-bar"><span style="width:88%"></span></span></div>
+      <div class="skill-pill"><span class="sp-name">MySQL</span><span class="sp-bar"><span style="width:75%"></span></span></div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section reveal">
+  <div class="cta-inner">
+    <p class="cta-eyebrow">Open to work</p>
+    <h2>Let's create something great together.</h2>
+    <a href="{% url 'contact' %}" class="btn-amber">Get In Touch</a>
+  </div>
+</section>
+
+{% endblock %}

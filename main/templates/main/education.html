@@ -1,0 +1,63 @@
+{% extends 'main/base.html' %}
+{% block title %}Education — Jamaica Mana-ay{% endblock %}
+{% block content %}
+
+<section class="page-banner">
+  <div class="page-banner-inner">
+    <p class="page-eyebrow reveal">Academics</p>
+    <h1 class="page-heading reveal">Education</h1>
+  </div>
+</section>
+
+<section class="fw-section">
+  <div class="edu-stack">
+    {% if education_list %}
+      {% for e in education_list %}
+      <div class="edu-block reveal">
+        <div class="edu-block-year">{{ e.year_range }}</div>
+        <div class="edu-block-body">
+          <div class="edu-block-top">
+            <span class="edu-icon"><i class="fas fa-building-columns"></i></span>
+            <div>
+              <p class="edu-school-name">{{ e.school }}</p>
+              {% if e.field_of_study %}<p class="edu-field">{{ e.field_of_study }}</p>{% endif %}
+            </div>
+          </div>
+          <h2 class="edu-degree">{{ e.degree }}</h2>
+          {% if e.description %}<p class="edu-desc">{{ e.description }}</p>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="edu-block reveal">
+        <div class="edu-block-year">2022 – Present</div>
+        <div class="edu-block-body">
+          <div class="edu-block-top">
+            <span class="edu-icon"><i class="fas fa-building-columns"></i></span>
+            <div>
+              <p class="edu-school-name">Your University — Philippines</p>
+              <p class="edu-field">Computer Science</p>
+            </div>
+          </div>
+          <h2 class="edu-degree">Bachelor of Science in Computer Science</h2>
+          <p class="edu-desc">Currently pursuing BSCS with coursework in data structures, algorithms, computer architecture, operating systems, software engineering, and discrete mathematics.</p>
+        </div>
+      </div>
+      <div class="edu-block reveal">
+        <div class="edu-block-year">2020 – 2022</div>
+        <div class="edu-block-body">
+          <div class="edu-block-top">
+            <span class="edu-icon"><i class="fas fa-school"></i></span>
+            <div>
+              <p class="edu-school-name">Your Senior High School — Philippines</p>
+              <p class="edu-field">STEM Strand</p>
+            </div>
+          </div>
+          <h2 class="edu-degree">Senior High School Diploma — STEM Strand</h2>
+          <p class="edu-desc">Completed the Science, Technology, Engineering, and Mathematics strand with strong performance in advanced mathematics and physical sciences.</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

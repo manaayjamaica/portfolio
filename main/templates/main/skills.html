@@ -1,0 +1,68 @@
+{% extends 'main/base.html' %}
+{% block title %}Skills — Jamaica Mana-ay{% endblock %}
+{% block content %}
+
+<section class="page-banner">
+  <div class="page-banner-inner">
+    <p class="page-eyebrow reveal">Toolkit</p>
+    <h1 class="page-heading reveal">Skills</h1>
+  </div>
+</section>
+
+<section class="fw-section">
+  {% if categories %}
+    {% for cat, skill_list in categories.items %}
+    <div class="skill-block reveal">
+      <div class="skill-block-label">{{ cat }}</div>
+      <div class="skill-rows">
+        {% for s in skill_list %}
+        <div class="skill-row">
+          <div class="skill-row-meta">
+            <span class="sr-name">{{ s.name }}</span>
+            <span class="sr-pct">{{ s.proficiency }}%</span>
+          </div>
+          <div class="sr-track"><div class="sr-fill" style="width:{{ s.proficiency }}%"></div></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="skill-block reveal">
+      <div class="skill-block-label">Programming Languages</div>
+      <div class="skill-rows">
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Python</span><span class="sr-pct">88%</span></div><div class="sr-track"><div class="sr-fill" style="width:88%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Java</span><span class="sr-pct">80%</span></div><div class="sr-track"><div class="sr-fill" style="width:80%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">C / C++</span><span class="sr-pct">72%</span></div><div class="sr-track"><div class="sr-fill" style="width:72%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">JavaScript</span><span class="sr-pct">75%</span></div><div class="sr-track"><div class="sr-fill" style="width:75%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-block-label">Web Technologies</div>
+      <div class="skill-rows">
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Django</span><span class="sr-pct">82%</span></div><div class="sr-track"><div class="sr-fill" style="width:82%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">HTML5 &amp; CSS3</span><span class="sr-pct">86%</span></div><div class="sr-track"><div class="sr-fill" style="width:86%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-block-label">CS Fundamentals</div>
+      <div class="skill-rows">
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Data Structures &amp; Algorithms</span><span class="sr-pct">86%</span></div><div class="sr-track"><div class="sr-fill" style="width:86%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Object-Oriented Programming</span><span class="sr-pct">88%</span></div><div class="sr-track"><div class="sr-fill" style="width:88%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Operating Systems</span><span class="sr-pct">74%</span></div><div class="sr-track"><div class="sr-fill" style="width:74%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Computer Networks</span><span class="sr-pct">70%</span></div><div class="sr-track"><div class="sr-fill" style="width:70%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Discrete Mathematics</span><span class="sr-pct">78%</span></div><div class="sr-track"><div class="sr-fill" style="width:78%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-block-label">Tools &amp; Software</div>
+      <div class="skill-rows">
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">Git &amp; GitHub</span><span class="sr-pct">83%</span></div><div class="sr-track"><div class="sr-fill" style="width:83%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">MySQL / SQLite</span><span class="sr-pct">78%</span></div><div class="sr-track"><div class="sr-fill" style="width:78%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">VS Code</span><span class="sr-pct">90%</span></div><div class="sr-track"><div class="sr-fill" style="width:90%"></div></div></div>
+        <div class="skill-row"><div class="skill-row-meta"><span class="sr-name">PythonAnywhere</span><span class="sr-pct">70%</span></div><div class="sr-track"><div class="sr-fill" style="width:70%"></div></div></div>
+      </div>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

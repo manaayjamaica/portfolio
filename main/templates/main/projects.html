@@ -1,0 +1,72 @@
+{% extends 'main/base.html' %}
+{% block title %}Projects — Jamaica Mana-ay{% endblock %}
+{% block content %}
+
+<section class="page-banner">
+  <div class="page-banner-inner">
+    <p class="page-eyebrow reveal">Portfolio</p>
+    <h1 class="page-heading reveal">Projects</h1>
+  </div>
+</section>
+
+<section class="fw-section">
+  <div class="proj-list">
+    {% if projects %}
+      {% for p in projects %}
+      <article class="proj-row-item reveal">
+        <div class="pri-left">
+          <span class="pri-num">{{ forloop.counter|stringformat:"02d" }}</span>
+          <div class="pri-bar"></div>
+        </div>
+        <div class="pri-body">
+          <div class="pri-head">
+            <h2>{{ p.title }}</h2>
+            <div class="pri-links">
+              {% if p.github_link %}<a href="{{ p.github_link }}" target="_blank" class="pl-btn"><i class="fab fa-github"></i> GitHub</a>{% endif %}
+              {% if p.live_link %}<a href="{{ p.live_link }}" target="_blank" class="pl-btn pl-live"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>{% endif %}
+            </div>
+          </div>
+          <p class="pri-desc">{{ p.description }}</p>
+          <div class="pri-tags">
+            {% for t in p.tech_list %}<span>{{ t }}</span>{% endfor %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    {% else %}
+      <article class="proj-row-item reveal">
+        <div class="pri-left"><span class="pri-num">01</span><div class="pri-bar"></div></div>
+        <div class="pri-body">
+          <div class="pri-head"><h2>Personal Portfolio Website</h2><div class="pri-links"><a href="#" class="pl-btn"><i class="fab fa-github"></i> GitHub</a></div></div>
+          <p class="pri-desc">A dynamic personal portfolio built with Django, featuring a full-width scroll layout, Django admin panel for content management, and a warm amber minimalist design. Deployed on PythonAnywhere.</p>
+          <div class="pri-tags"><span>Django</span><span>Python</span><span>HTML5</span><span>CSS3</span><span>SQLite</span></div>
+        </div>
+      </article>
+      <article class="proj-row-item reveal">
+        <div class="pri-left"><span class="pri-num">02</span><div class="pri-bar"></div></div>
+        <div class="pri-body">
+          <div class="pri-head"><h2>Inventory Management System</h2><div class="pri-links"><a href="#" class="pl-btn"><i class="fab fa-github"></i> GitHub</a></div></div>
+          <p class="pri-desc">A web-based inventory system for small businesses built with Django. Supports product tracking, stock updates, low-stock alerts, and PDF report generation. Uses MySQL for data storage.</p>
+          <div class="pri-tags"><span>Django</span><span>MySQL</span><span>Bootstrap</span><span>Python</span><span>HTML5</span></div>
+        </div>
+      </article>
+      <article class="proj-row-item reveal">
+        <div class="pri-left"><span class="pri-num">03</span><div class="pri-bar"></div></div>
+        <div class="pri-body">
+          <div class="pri-head"><h2>Binary Search Tree Visualizer</h2><div class="pri-links"><a href="#" class="pl-btn"><i class="fab fa-github"></i> GitHub</a></div></div>
+          <p class="pri-desc">An interactive browser-based tool for visualizing Binary Search Tree operations — insert, delete, and traversal (in-order, pre-order, post-order) — with animated step-by-step highlights.</p>
+          <div class="pri-tags"><span>JavaScript</span><span>HTML5 Canvas</span><span>CSS3</span><span>Data Structures</span></div>
+        </div>
+      </article>
+      <article class="proj-row-item reveal">
+        <div class="pri-left"><span class="pri-num">04</span><div class="pri-bar"></div></div>
+        <div class="pri-body">
+          <div class="pri-head"><h2>Expense Tracker App</h2><div class="pri-links"><a href="#" class="pl-btn"><i class="fab fa-github"></i> GitHub</a></div></div>
+          <p class="pri-desc">A personal finance tracker with user authentication, category-based expense logging, monthly summaries, and charts. Built with Django and Chart.js for data visualization.</p>
+          <div class="pri-tags"><span>Django</span><span>Chart.js</span><span>SQLite</span><span>JavaScript</span><span>CSS3</span></div>
+        </div>
+      </article>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

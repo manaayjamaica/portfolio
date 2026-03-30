@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+{% block title %}About — Jamaica Mana-ay{% endblock %}
+{% block content %}
+
+<section class="page-banner">
+  <div class="page-banner-inner">
+    <p class="page-eyebrow reveal">Who I am</p>
+    <h1 class="page-heading reveal">About Me</h1>
+  </div>
+</section>
+
+<section class="fw-section">
+  <div class="about-two-col">
+    <!-- Photo + quick facts -->
+    <div class="about-left reveal">
+      {% if profile and profile.profile_photo %}
+        <img src="{{ profile.profile_photo.url }}" alt="Jamaica" class="about-photo"/>
+      {% else %}
+        <div class="about-photo-ph"><i class="fas fa-user"></i></div>
+      {% endif %}
+      <div class="quick-facts">
+        <h4>Quick Info</h4>
+        {% if profile and profile.email %}
+        <div class="qf-row"><i class="fas fa-envelope"></i><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></div>
+        {% endif %}
+        {% if profile and profile.location %}
+        <div class="qf-row"><i class="fas fa-location-dot"></i><span>{{ profile.location }}</span></div>
+        {% endif %}
+        {% if profile and profile.github %}
+        <div class="qf-row"><i class="fab fa-github"></i><a href="{{ profile.github }}" target="_blank">GitHub Profile</a></div>
+        {% endif %}
+        {% if profile and profile.linkedin %}
+        <div class="qf-row"><i class="fab fa-linkedin"></i><a href="{{ profile.linkedin }}" target="_blank">LinkedIn Profile</a></div>
+        {% endif %}
+      </div>
+    </div>
+    <!-- Text content -->
+    <div class="about-right">
+      <div class="reveal">
+        <h2 class="about-h2">My Background</h2>
+        <p>{% if profile %}{{ profile.bio }}{% else %}I'm a Computer Science student with a strong passion for software development, data structures, and algorithmic thinking. I love building projects that apply theoretical knowledge to real-world challenges.{% endif %}</p>
+      </div>
+      {% if profile and profile.career_goals %}
+      <div class="reveal" style="margin-top: 2.5rem">
+        <h2 class="about-h2">Goals &amp; Interests</h2>
+        <p>{{ profile.career_goals }}</p>
+      </div>
+      {% endif %}
+      <div class="about-actions reveal">
+        <a href="{% url 'skills' %}" class="btn-amber">See My Skills</a>
+        <a href="{% url 'projects' %}" class="btn-line">View Projects →</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

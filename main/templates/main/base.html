@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Jamaica Mana-ay{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}"/>
+</head>
+<body>
+
+  <!-- TOP NAV — pill-style centered -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a href="{% url 'home' %}" class="topbar-brand">JM</a>
+      <nav class="topbar-nav">
+        <a href="{% url 'home' %}"      {% if request.resolver_match.url_name == 'home'      %}class="active"{% endif %}>Home</a>
+        <a href="{% url 'about' %}"     {% if request.resolver_match.url_name == 'about'     %}class="active"{% endif %}>About</a>
+        <a href="{% url 'skills' %}"    {% if request.resolver_match.url_name == 'skills'    %}class="active"{% endif %}>Skills</a>
+        <a href="{% url 'projects' %}"  {% if request.resolver_match.url_name == 'projects'  %}class="active"{% endif %}>Projects</a>
+        <a href="{% url 'education' %}" {% if request.resolver_match.url_name == 'education' %}class="active"{% endif %}>Education</a>
+        <a href="{% url 'contact' %}"   {% if request.resolver_match.url_name == 'contact'   %}class="active"{% endif %}>Contact</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- mobile drawer -->
+    <div class="mobile-drawer" id="drawer">
+      <a href="{% url 'home' %}"      {% if request.resolver_match.url_name == 'home'      %}class="active"{% endif %}><i class="fas fa-house"></i>Home</a>
+      <a href="{% url 'about' %}"     {% if request.resolver_match.url_name == 'about'     %}class="active"{% endif %}><i class="fas fa-user"></i>About</a>
+      <a href="{% url 'skills' %}"    {% if request.resolver_match.url_name == 'skills'    %}class="active"{% endif %}><i class="fas fa-code"></i>Skills</a>
+      <a href="{% url 'projects' %}"  {% if request.resolver_match.url_name == 'projects'  %}class="active"{% endif %}><i class="fas fa-folder"></i>Projects</a>
+      <a href="{% url 'education' %}" {% if request.resolver_match.url_name == 'education' %}class="active"{% endif %}><i class="fas fa-graduation-cap"></i>Education</a>
+      <a href="{% url 'contact' %}"   {% if request.resolver_match.url_name == 'contact'   %}class="active"{% endif %}><i class="fas fa-paper-plane"></i>Contact</a>
+    </div>
+  </header>
+
+  <!-- TOAST MESSAGES -->
+  {% if messages %}
+  <div class="toasts">
+    {% for m in messages %}
+    <div class="toast {{ m.tags }}">
+      <i class="fas {% if 'success' in m.tags %}fa-check-circle{% else %}fa-exclamation-circle{% endif %}"></i>
+      {{ m }}
+      <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">Jamaica Mana-ay</span>
+        <span class="footer-sub">CS Student &mdash; Philippines</span>
+      </div>
+      <div class="footer-links">
+        {% if profile and profile.github %}<a href="{{ profile.github }}" target="_blank"><i class="fab fa-github"></i></a>{% endif %}
+        {% if profile and profile.linkedin %}<a href="{{ profile.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
+        {% if profile and profile.email %}<a href="mailto:{{ profile.email }}"><i class="fas fa-envelope"></i></a>{% endif %}
+      </div>
+      <span class="footer-copy">&copy; 2024 &middot; Built with Django</span>
+    </div>
+  </footer>
+
+  <script>
+    // Topbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('topbar').classList.toggle('raised', window.scrollY > 50);
+    });
+    // Burger menu
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+    // Scroll-reveal
+    const io = new IntersectionObserver(entries =>
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('in')), { threshold: 0.08 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
