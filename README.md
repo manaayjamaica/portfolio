@@ -2,8 +2,8 @@
 
 A dynamic personal portfolio built with **Django**, featuring a warm amber parchment design and full-width scroll sections.
 
-🌐 **Live Site:** https://jamaica_mana-ay.pythonanywhere.com  
-📁 **GitHub Repo:** https://github.com/jamaica-mana-ay/portfolio
+🌐 **Live Site:** https://jamaicamanaay.pythonanywhere.com  
+📁 **GitHub Repo:** https://github.com/jamaicamanaay/portfolio
 
 ---
 
