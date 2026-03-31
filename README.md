@@ -49,38 +49,30 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 
-# 5. Load sample data
-python manage.py shell < seed_data.py
-
-# 6. Admin user
+# 5. Admin user
 python manage.py createsuperuser
 
-# 7. Run
+# 6. Run
 python manage.py runserver
-```
-
-Site: http://127.0.0.1:8000  
-Admin: http://127.0.0.1:8000/admin (user: `admin` / pass: `admin123`)
-
 ---
 
 ## PythonAnywhere Deployment
 
-### 1. Create account — username: `jamaica_mana-ay`
+### 1. Create account — username: `jamaicamanaay`
 ### 2. Open Bash console & clone
 ```bash
-git clone https://github.com/jamaica-mana-ay/portfolio.git
+git clone https://github.com/manaayjamaica/portfolio.git
 mkvirtualenv --python=/usr/bin/python3.10 venv
 cd jamaica_portfolio
 pip install -r requirements.txt
 ```
 ### 3. Web tab → Manual config → Python 3.10
-- Source code: `/home/jamaica_mana-ay/jamaica_portfolio`
+- Source code: `/home/jamaicamanaay/portfolio`
 
 ### 4. Edit WSGI file
 ```python
 import sys, os
-path = '/home/jamaica_mana-ay/jamaica_portfolio'
+path = '/home/jamaicamanaay/portfolio'
 if path not in sys.path: sys.path.append(path)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'portfolio_project.settings'
 from django.core.wsgi import get_wsgi_application
@@ -89,18 +81,13 @@ application = get_wsgi_application()
 ### 5. Static files (Web tab)
 | URL | Directory |
 |-----|-----------|
-| `/static/` | `/home/jamaica_mana-ay/jamaica_portfolio/staticfiles` |
-| `/media/` | `/home/jamaica_mana-ay/jamaica_portfolio/media` |
+| `/static/` | `/home/jamaicamanaay/jamaica_portfolio/staticfiles` |
+| `/media/` | `/home/jamaicamanaay/jamaica_portfolio/media` |
 
 ```bash
 python manage.py collectstatic
 python manage.py migrate
-python manage.py shell < seed_data.py
 python manage.py createsuperuser
 ```
 ### 6. Reload → Live at https://jamaica_mana-ay.pythonanywhere.com
 
----
-
-## Add Instructor as Collaborator
-GitHub → Settings → Collaborators → Add people → `natzjun2@gmail.com`
